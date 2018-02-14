@@ -8,7 +8,7 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    resolve(__dirname, "src") + "/index.jsx"
+    resolve(__dirname, "src", "index.jsx")
   ],
 
   output: {
@@ -23,15 +23,15 @@ module.exports = {
 
   devtool: '#source-map',
 
- devServer: {
-   hot: true,
-   contentBase: resolve(__dirname, 'build'),
-   publicPath: '/'
- },
+  devServer: {
+    hot: true,
+    contentBase: resolve(__dirname, 'build'),
+    publicPath: '/'
+  },
 
   module: {
-   rules: [
-     {
+    rules: [
+      {
         test: /\.jsx?$/,
         enforce: "pre",
         loader: "eslint-loader",
@@ -39,33 +39,33 @@ module.exports = {
         options: {
           emitWarning: true,
           configFile: "./.eslintrc.json"
-          }
-        },
-     {
-       test: /\.jsx?$/,
-       loader: "babel-loader",
-       exclude: /node_modules/,
-       options: {
-         presets: [
-           ["es2015", {"modules": false}],
-           "react"
-         ],
-         plugins: [
-           "react-hot-loader/babel"
-         ]
-       }
-     },
-   ],
- },
-   plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
-      new HtmlWebpackPlugin({
-       template:'template.ejs',
-       appMountId: 'react-app-root',
-       title: 'React Help Queue',
-       filename: resolve(__dirname, "build", "index.html"),
-        }),
-    ]
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+        options: {
+          presets: [
+            ["es2015", {"modules": false}],
+            "react",
+          ],
+          plugins: [
+            "react-hot-loader/babel"
+          ]
+        }
+      }
+    ],
+  },
 
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      template:'template.ejs',
+      appMountId: 'react-app-root',
+      title: 'React Help Queue',
+      filename: resolve(__dirname, "build", "index.html"),
+    }),
+  ]
 };
