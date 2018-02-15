@@ -6,13 +6,14 @@ import TicketDetail from './TicketDetail';
 export default function Admin(props) {
   let optionalSelectedTicketContent = null;
   if (props.selectedTicket != null) {
-    optionalSelectedTicketContent = <TicketDetail selectedTicket={props.selectedTicket}/>;
+    optionalSelectedTicketContent = <TicketDetail selectedTicket={props.ticketList[props.selectedTicket]}/>;
   }
   return(
     <div>
       <h2>Admin Component Works</h2>
       {optionalSelectedTicketContent}
-      <TicketList ticketList={props.ticketList}
+      <TicketList
+        ticketList={props.ticketList}
         currentRouterPath={props.currentRouterPath}
         onTicketSelection={props.onTicketSelection}/>
     </div>
