@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function TicketDetail(props){
+function TicketDetail(props){
   return (
     <div>
       <hr/>
@@ -16,3 +16,5 @@ export default function TicketDetail(props){
 TicketDetail.propTypes = {
   selectedTicket: PropTypes.object
 };
+
+export default TicketDetail;
